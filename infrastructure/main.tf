@@ -1,5 +1,7 @@
 ##
 
+data "aws_caller_identity" "current" {}
+
 variable "aws_profile" {
   description = "Enter profile matching your aws cli credentials."
   type        = string
