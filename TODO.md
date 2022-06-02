@@ -1,0 +1,29 @@
+Deployment Cloudformation
+- SNS Topics
+  - {workspace}-firehose-raw-alarms
+- SQS Queues
+  - {workspace}-firehose-raw-alarms-queue
+  - {workspace}-firehose-raw-event-dlq
+  - {workspace}-securityhub-alerts-queue
+  - {workspace}-securityhub-alerts-dlq
+- SNS Subscription
+  - firehose-raw-alarms -> firehose-raw-alarms-queue (60 second delay)
+- Lambdas
+  - {workspace}-filter-raw-alarms
+    - Trigger firehose-raw-alarms-queue
+    - Batch 10
+    - Logic
+      - First Pass filter, based on configuration data, add to unfiltered
+      - if list of unfiltered, connect to turbot workspace (creds)
+      - check if alarm is still valid
+      - add to {workspace}-securityhub-alerts-queue
+  - {workspace}-filter-raw-alarms
+    - Trigger {workspace}-securityhub-alerts-queue
+    - Batch 1
+    - Logic
+      - Format ASFF format
+      - Assume Role in Target Account
+      - Send Alarm to SH
+      -
+  - {workspace}-install
+

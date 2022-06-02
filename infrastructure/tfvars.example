@@ -1,0 +1,26 @@
+## Deployment AWS Profile
+
+aws_profile = "default"
+
+aws_region = "us-east-2"
+
+workspaces = {
+  morales = "https://morales-turbot.cloud.turbot-dev.com/"
+}
+
+workspace_access_key = {
+  morales = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+}
+
+workspace_secret_key = {
+  morales = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+}
+
+subnet_ids = [
+  "subnet-0a4a4862", 
+  "subnet-296b1353"
+]
+
+security_groups = [
+  "sg-20da9941"
+]

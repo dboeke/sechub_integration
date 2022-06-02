@@ -1,0 +1,29 @@
+{
+  "SchemaVersion": "2018-10-08",
+  "Severity": {
+    "Label": "HIGH",
+    "Product": 80
+  },
+  "Compliance": {
+    "Status": "WARNING"
+  },
+  "Types": ["Software and Configuration Checks/Governance/Out of Compliance"],
+  "id": "arn:aws:securityhub:us-east-2:133534076130:turbot/257954811436181",
+  "CreatedAt": "2022-05-30T20:18:47.375Z",
+  "UpdatedAt": "2022-05-30T20:18:47.375Z",
+  "ProductArn": "arn:aws:securityhub:us-east-2:453761072151:product/turbot/turbot",
+  "AwsAccountId": "133534076130",
+  "Description": "Default Encryption at Rest and Encryption at Rest is set as per policy",
+  "Title": "Alarm: AWS > S3 > Bucket > Encryption at Rest",
+  "Resources": [{
+    "Type": "Resource AKA",
+    "Id": "arn:aws:s3:::sh-firehose-test-bucket-001",
+    "Tags": {},
+    "Partition": "aws",
+    "Region": "us-east-2"
+  }, {
+    "Type": "Resource ID",
+    "Id": "arn:aws:securityhub:us-east-2:133534076130:turbot/257954811436181"
+  }],
+  "GeneratorId": "arn:aws:securityhub:::ruleset/turbot/aws-s3-bucket-encryption-at-rest"
+}
