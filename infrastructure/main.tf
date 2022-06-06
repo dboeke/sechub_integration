@@ -36,3 +36,13 @@ variable "security_groups" {
   description = "List of Security Groups to attach to Lambda functions"
   type        = list(string)
 }
+
+variable "assume_role_name" {
+  description = "Enter name of cross account role for sending security hub issues"
+  type        = string
+}
+
+variable "assume_role_external_id" {
+  description = "Enter external id cross account role for sending security hub issues"
+  type        = string
+}

@@ -24,3 +24,9 @@ subnet_ids = [
 security_groups = [
   "sg-20da9941"
 ]
+
+## Security hub reporting cross account role
+assume_role_name = "secHubTestRole"
+
+assume_role_external_id = "sec_hub_integration"
+

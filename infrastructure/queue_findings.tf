@@ -20,7 +20,7 @@ resource "aws_sqs_queue" "findings_dlq" {
   sqs_managed_sse_enabled = true
 }
 
-resource "aws_sqs_queue_policy" "raw_alarms_queue_policy" {
+resource "aws_sqs_queue_policy" "findings_queue_policy" {
   queue_url = aws_sqs_queue.findings_queue.id
   policy = <<-POLICY
     {
@@ -36,7 +36,7 @@ resource "aws_sqs_queue_policy" "raw_alarms_queue_policy" {
             ]
           },
           "Action": "sqs:SendMessage",
-          "Resource": "${aws_sqs_queue.findings_queue.arn}",
+          "Resource": "${aws_sqs_queue.findings_queue.arn}"
         }
       ]
     }
