@@ -11,7 +11,6 @@ def get_param(ssm_client, param_name, encrypted):
     WithDecryption=encrypted
   )
   print("after response")
-  print(response)
   return response['Parameter']['Value']
 
 class GraphQlException(Exception):
@@ -105,7 +104,7 @@ def convert_to_asff(timestamp, control, aws_metadata, resource_akas):
   control_id = control["turbot"]["id"]
   region = aws_metadata["regionName"] if "regionName" in aws_metadata else "global"
   account_id = aws_metadata["accountId"]
-  finding["id"] = f"arn:aws:securityhub:{region}:{account_id}:turbot/{control_id}"
+  finding["Id"] = f"arn:aws:securityhub:{region}:{account_id}:turbot/{control_id}"
   finding["CreatedAt"] = timestamp
   finding["UpdatedAt"] = timestamp
   AWS_REGION = os.environ['AWS_REGION']
@@ -120,7 +119,9 @@ def convert_to_asff(timestamp, control, aws_metadata, resource_akas):
     resource_aka = {
       "Type": "Resource AKA",
       "Id": aka,
-      "Tags": {}
+      "Tags": {
+        "Source": "Turbot-Sec-Hub-Integration"
+      }
     }
     if "partition" in aws_metadata:
       resource_aka["Partition"] = aws_metadata["partition"]
@@ -129,7 +130,7 @@ def convert_to_asff(timestamp, control, aws_metadata, resource_akas):
     resources.append(resource_aka)
   resource_id = {
     "Type": "Resource ID",
-    "Id": finding["id"]
+    "Id": finding["Id"]
   }
   resources.append(resource_id)
   finding["Resources"] = resources
@@ -228,6 +229,8 @@ def lambda_handler(event, context):
         MessageAttributes=msg_attributes,
         MessageBody=data
       )
+      print(f"[SUCCESS] Message sent")
+      print(response)
     except ClientError as e:
       print(f'Could not send meessage to: {FINDINGS_QUEUE_URL}.')
       print(e)

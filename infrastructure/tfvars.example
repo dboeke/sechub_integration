@@ -2,7 +2,7 @@
 
 aws_profile = "default"
 
-aws_region = "us-east-2"
+aws_region = ""
 
 workspaces = {
   morales = "https://morales-turbot.cloud.turbot-dev.com/"

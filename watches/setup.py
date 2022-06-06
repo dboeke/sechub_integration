@@ -88,7 +88,7 @@ if __name__ == "__main__":
   '''
 
   SSM_PREFIX = "/sechub/integration/"
-  AWS_REGION = "us-east-2"
+  AWS_REGION = "eu-central-1"
 
   for workspace_name, accounts in workspace_accounts.items():
     workspace = {}
